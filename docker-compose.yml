@@ -1,0 +1,22 @@
+version: '3.8'
+
+x-logging: &logging
+  options:
+    max-size: '1b'
+    labels: "{{.Name}}"
+  driver: json-file
+
+services:
+  console: &console
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      PLATFORMIO_CORE_DIR: /app/vendor
+    volumes:
+      - .:/app
+      - /tmp:/tmp
+      - ~/.bash_history:/root/.bash_history
+    working_dir: /app
+    logging: *logging
+    command: /bin/bash
