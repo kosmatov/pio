@@ -9,8 +9,7 @@ x-logging: &logging
 services:
   console: &console
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: docker/
     environment:
       PLATFORMIO_CORE_DIR: /app/vendor
     volumes:
